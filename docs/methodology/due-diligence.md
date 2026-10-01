@@ -81,6 +81,10 @@ is why the 0.60 cap in
    products, or for analytics. **For LLM and AI suppliers this question is asked
    explicitly and separately** — a general "we do not misuse customer data"
    answer does not cover model training, and the answer changes the DS factor.
+
+   **For LLM vendors**, the full set of AI-specific questions is in
+   [`ai-llm-suppliers.md`](ai-llm-suppliers.md) §4. A general answer here does
+   not substitute for the LLM-specific questionnaire.
 4. Whether processing is automated decision-making within GDPR Art. 22, and
    whether profiling occurs.
 5. Storage locations, including all regions and all backup locations.

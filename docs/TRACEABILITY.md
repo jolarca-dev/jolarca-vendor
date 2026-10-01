@@ -24,6 +24,7 @@ partners.*
 | Requirement | Method artifact | Record location |
 |---|---|---|
 | Vendor risk assessed **before** engagement | [`procedures/onboarding.md`](procedures/onboarding.md) gate and steps 1–8 | Register `assessed_date` versus `integration_live_from` |
+| LLM vendor risk assessed with AI-specific criteria | [`methodology/ai-llm-suppliers.md`](methodology/ai-llm-suppliers.md) | Register `category: ai-llm` entries with LLM-specific DS/BC/AB and CE domains |
 | Vendor risk criteria defined and applied consistently | [`methodology/risk-scoring.md`](methodology/risk-scoring.md) | Scored fields per register entry |
 | Alternatives considered before selection | [`procedures/onboarding.md`](procedures/onboarding.md) step 1 | Assessment "Alternatives considered" section |
 | Vendors tiered by risk, driving depth of treatment | [`methodology/tiering-rubric.md`](methodology/tiering-rubric.md) | Register `tier`, `tier_from_rrs`, `tier_floor_from_ds` |
