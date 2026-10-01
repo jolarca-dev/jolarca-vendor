@@ -1,0 +1,59 @@
+blank_issues: false
+
+# Blank issues are disabled on purpose. An unstructured public issue is the
+# easiest way for confidential supplier content to reach a public tracker by
+# accident, and once pushed it cannot be withdrawn: it remains in history, in
+# forks, in notifications and in any subscriber's inbox.
+#
+# This repository is PUBLIC and classified internal. It holds vendor management
+# METHOD only. Supplier records, assessments, incidents and contracts are
+# confidential and are handled in the private repositories listed below.
+
+contact_links:
+  - name: Security vulnerability or leaked secret
+    url: https://github.com/jolarca-dev/jolarca-vendor/blob/main/SECURITY.md
+    about: >-
+      Do NOT open an issue. Use GitHub private vulnerability reporting, or the
+      contact route in SECURITY.md. This includes any credential, personal data or
+      confidential supplier content committed to this repository — that is a
+      disclosure event, not a bug report, and reverting it does not undo it.
+
+  - name: Vendor onboarding, assessment or register change
+    url: https://github.com/jolarca-dev/jolarca-compliance
+    about: >-
+      Supplier intake is confidential. Raise it in jolarca-compliance, where the
+      authoritative register, assessments and Transfer Impact Assessments live.
+      Naming a supplier together with its data categories on a public tracker
+      discloses our supply chain and may breach the supplier's own confidentiality
+      terms.
+
+  - name: Supplier security incident
+    url: https://github.com/jolarca-dev/jolarca-compliance
+    about: >-
+      Handle under jolarca-compliance/incidents/ per the incident procedure. Do not
+      file here. Even where the supplier's breach is already public news, our
+      exposure assessment and our status as a customer generally are not, and an
+      incident carries a 72-hour GDPR Article 33 clock that a public issue does not
+      serve.
+
+  - name: Contract, DPA or SCC question
+    url: https://github.com/jolarca-dev/jolarca-legal
+    about: >-
+      Agreement texts and executed contracts are authoritative in jolarca-legal.
+      This repository publishes the requirements a contract must meet — see
+      docs/agreements/ — but holds no contract content.
+
+  - name: Control gap or audit finding
+    url: https://github.com/jolarca-dev/jolarca-vendor/blob/main/docs/gap-intake.md
+    about: >-
+      Read docs/gap-intake.md first. It routes each gap type to the correct
+      register. Findings are NOT recorded in this repository, because publishing
+      where our controls are weakest tells an adversary exactly where to look.
+
+  - name: Repository settings, visibility or branch protection
+    url: https://github.com/jolarca-dev/jolarca-control
+    about: >-
+      Settings are infrastructure, applied by Terraform from
+      jolarca-control/repos/jolarca-vendor.yml. Do not change them in the GitHub
+      UI — out-of-band changes drift from declared state and may be silently
+      unenforced.

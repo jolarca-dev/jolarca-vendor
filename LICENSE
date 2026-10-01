@@ -1,0 +1,56 @@
+Copyright (c) 2026 Journey Of Life (journeyoflife-org). All rights reserved.
+
+This repository is PUBLIC and its contents are classified INTERNAL. It publishes
+the vendor management methodology, procedures and agreement standards of the
+Journey Of Life marketplace platform for transparency and to allow suppliers to
+read the requirements they will be assessed against.
+
+Publication is not a licence.
+
+1. No part of this repository may be copied, redistributed, sublicensed, sold, or
+   used to provide a competing or derivative compliance service without the prior
+   written consent of the copyright holder.
+2. Quotation for the purposes of commentary, audit, academic discussion or
+   regulatory submission is permitted, provided the source is attributed and the
+   quotation is not presented as an original work of the quoting party.
+3. Suppliers and prospective suppliers of the platform may use these documents
+   for the purpose of responding to due diligence conducted by the platform. That
+   is the intended use and no permission is required for it.
+4. THE CONTENT IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+   IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+   COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY ARISING
+   FROM THE USE OF THIS CONTENT.
+5. These documents describe a methodology. They are not legal advice and do not
+   create any obligation, warranty or representation to any third party. Adopting
+   them does not of itself confer compliance with SOC 2, ISO/IEC 27001, the GDPR
+   or PCI DSS. Compliance depends on the operation of controls and on evidence of
+   that operation, neither of which is published here.
+
+## Confidentiality boundary
+
+This repository deliberately contains NO supplier-specific information: no vendor
+register, no assessment findings, no risk scores for named suppliers, no contract
+terms, no transfer impact assessments, no audit evidence, and no list of control
+gaps.
+
+That content is classified CONFIDENTIAL and is held in private repositories. Its
+absence from this repository is a control, not an omission. Contributors must not
+add it. The continuous integration secret and personal-data scan enforces this
+mechanically, and `jolarca-control/scripts/validate_repos.py` forbids
+confidential or restricted classifications in a public repository at the
+infrastructure level.
+
+Any confidential material committed here by mistake must be treated as a security
+incident under `SECURITY.md`, not merely reverted: removal from the working tree
+does not remove it from history, and a force-push does not undo a clone.
+
+## Third-party references
+
+References to SOC 2 trust services criteria, ISO/IEC 27001:2022 Annex A controls,
+the General Data Protection Regulation, PCI DSS v4.0, the SIG Lite questionnaire
+and the CSA CAIQ are to publicly available standards and frameworks. Those
+standards are the property of their respective bodies — the AICPA, ISO/IEC, the
+European Union, the PCI Security Standards Council, the Shared Assessments Program
+and the Cloud Security Alliance — and nothing in this repository reproduces them
+in full or claims any affiliation with or endorsement by them.

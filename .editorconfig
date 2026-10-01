@@ -1,0 +1,30 @@
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+indent_style = space
+indent_size = 2
+
+[*.md]
+# Trailing spaces are meaningful in Markdown as a hard line break, but this
+# repository wraps prose and never relies on them, so they are still trimmed.
+trim_trailing_whitespace = true
+max_line_length = off
+
+[*.sh]
+indent_size = 2
+
+[Makefile]
+indent_style = tab
+
+[*.{yml,yaml}]
+indent_size = 2
+
+[*.json]
+indent_size = 2
+
+[*.csv]
+insert_final_newline = false

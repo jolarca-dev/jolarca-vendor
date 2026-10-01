@@ -1,0 +1,84 @@
+name: CI
+
+# The job below is named `lint` because that is the single required status check
+# context declared for this repository in jolarca-control/repos/jolarca-vendor.yml.
+#
+# Renaming the job, or splitting it into several jobs, breaks branch protection:
+# a required context that no run ever reports means every pull request waits
+# forever. Adding extra jobs is fine — they simply are not required — but `lint`
+# must exist and must report.
+#
+# Settings for this repository are managed as infrastructure in jolarca-control
+# and applied by Terraform. Do not change them in the GitHub UI; a settings change
+# is a pull request against jolarca-control.
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+# Cancel superseded runs on the same ref. A stale run reporting success against
+# out-of-date content is worse than no run, because branch protection with
+# `strict: true` should catch it but should not have to.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    name: lint
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # PyYAML is a build tool for YAML validation only. This repository commits
+      # no Python source — see docs/ASSUMPTIONS.md decision D1.
+      - name: Install build dependencies
+        run: python -m pip install --quiet pyyaml
+
+      # Advisory: `make lint-docs` tolerates failure, because a hard style gate on
+      # normative prose invites suppression rather than improvement. Output is
+      # still surfaced so that drift is visible.
+      - name: Markdown lint (advisory)
+        run: make lint-docs
+
+      # HARD FAILURE. A malformed workflow or issue form fails silently at runtime
+      # rather than at build time, and a gate that never runs is indistinguishable
+      # from a gate that passes.
+      - name: YAML validation
+        run: make yaml-check
+
+      # HARD FAILURE. This repository is public and classified internal. The scan
+      # reports file and line only — never the matched value — because echoing a
+      # secret into a CI log re-discloses it and CI logs outlive the commit.
+      - name: Secret and personal-data scan
+        run: make scan
+
+      # Negative control. A passing scan means nothing if the scanner is broken,
+      # because "0 findings" then reports "not looking" rather than "nothing
+      # found". This plants a synthetic credential, asserts the scan rejects it,
+      # removes it, and asserts the scan then passes. It exists because a control
+      # that is configured and never fires is the failure mode this estate has
+      # already recorded against itself.
+      - name: Prove the scan actually fires
+        run: make selftest
+
+      # Fail closed if the scan script is missing or non-executable. Without this,
+      # deleting the script would turn the step into a no-op that still reports
+      # success — the same class of defect as a control that is configured and
+      # never fires.
+      - name: Confirm the gate actually ran
+        run: |
+          test -f scripts/scan-secrets.sh || { echo "scan script missing"; exit 1; }
+          test -f Makefile || { echo "Makefile missing"; exit 1; }
+          echo "gate artifacts present"

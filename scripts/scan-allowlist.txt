@@ -1,0 +1,24 @@
+# Secret and personal-data scan allowlist
+#
+# Format: one entry per line — a repository-relative path, optionally suffixed
+# with ":<line number>" to allow a single line rather than a whole file.
+#
+#   path/to/file.md          allow every match in the file
+#   path/to/file.md:42       allow only the match on line 42
+#
+# Rules for entries:
+#
+# 1. Every entry MUST carry a written reason after a "#". An unexplained
+#    allowlist entry becomes a permanent blind spot that nobody later dares to
+#    remove, and it is the first thing an assessor asks about.
+# 2. Prefer a line-scoped entry over a whole-file entry. A whole-file exclusion
+#    suppresses every future finding in that file, including ones added later.
+# 3. Never allowlist a live credential. Revoke it instead — see the remediation
+#    order printed by scripts/scan-secrets.sh. Allowlisting a real secret converts
+#    a leak into a leak that the control now actively conceals.
+# 4. Review every entry at each reassessment cycle. An allowlist entry whose
+#    reason no longer holds should be deleted.
+#
+# There are currently no allowlisted matches. This file is intentionally empty of
+# entries: a growing allowlist is a leading indicator that the scan is being
+# worked around rather than satisfied.

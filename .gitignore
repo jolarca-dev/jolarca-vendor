@@ -1,0 +1,66 @@
+# ── Python ───────────────────────────────────────────────────────────────────
+# No Python source is committed to this repository; it is declared as Markdown in
+# jolarca-control/repos/jolarca-vendor.yml. These entries exist because Python is
+# used as a build tool by `make yaml-check`, and because a local virtualenv is
+# created by uv during development. See docs/ASSUMPTIONS.md decision D1.
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+
+# ── Node ─────────────────────────────────────────────────────────────────────
+# markdownlint-cli2 is fetched on demand by npx and is never committed.
+node_modules/
+.markdownlint-cli2-*
+
+# ── Editors and IDEs ─────────────────────────────────────────────────────────
+.idea/
+.vscode/
+*.iml
+*.swp
+*.swo
+*~
+
+# ── Operating systems ────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+
+# ── Secrets and local configuration ──────────────────────────────────────────
+# This repository is PUBLIC. There is no legitimate reason for an environment
+# file here, and no .env.example is provided either: a template invites someone to
+# create the real file beside it. If configuration is ever needed, that is a
+# signal the content belongs in a different repository.
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.pfx
+*.enc.yaml
+*.enc.json
+secrets/
+
+# ── Confidential vendor content ──────────────────────────────────────────────
+# Belt-and-braces ignore rules for artifact classes that must never be committed
+# here. They are `confidential` and belong in jolarca-compliance or jolarca-legal.
+# Ignoring a path does not make committing it safe — see SECURITY.md — but it
+# stops an accidental drag-and-drop from being staged.
+#
+# Every pattern is ANCHORED with a leading slash so it matches only at the
+# repository root. An unanchored `evidence/` would also match docs/evidence/,
+# which is legitimate published content, and git will not descend into an ignored
+# directory to apply a later negation — the exclusion would win silently. Anchoring
+# removes the need for a negation rule at all.
+/vendor-assessments/
+/vendor-evidence/
+/transfer-impact-assessments/
+/evidence/
+/contracts/
+*-assessment.md
+*-dpa.md
+*-scc.pdf
+*-aoc.pdf

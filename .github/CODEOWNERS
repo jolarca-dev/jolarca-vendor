@@ -1,0 +1,50 @@
+# CODEOWNERS — jolarca-vendor
+#
+# READ THIS BEFORE TREATING THIS FILE AS A CONTROL.
+#
+# This file provides ROUTING AND ATTRIBUTION. It is NOT an approval control for
+# this repository, for two independent reasons:
+#
+#   1. `require_code_owner_reviews` is FALSE for jolarca-vendor in
+#      jolarca-control/repos/jolarca-vendor.yml. Nothing blocks a merge on the
+#      strength of this file.
+#   2. `required_approving_review_count` is 0 and there is exactly one operator.
+#      The only resolvable owner is the person authoring the change, so a
+#      code-owner review would be self-review, which provides no independence.
+#
+# The organisation has no teams. Pointing this file at a team that does not exist
+# makes it silently unresolvable — a control that is present in configuration and
+# never fires, which is worse than no control because it appears on a checklist.
+# It therefore names a real user account, which is resolvable and honest about
+# what it can do.
+#
+# The compensating controls for the absence of independent review are the
+# automated gates in .github/workflows/ci.yml and the annual external audit.
+# See docs/solo-operator-controls.md for what they do and do not prove.
+#
+# When a second operator is onboarded, this file should be updated to name both
+# and `require_code_owner_reviews` raised via jolarca-control. That is the trigger
+# recorded in the estate deviation register for closing the solo-era deviations.
+
+# Everything, by default.
+*                               @JourneyOfLife
+
+# Control thresholds — the parts of the methodology that determine how strictly
+# suppliers are treated. Changes here are the highest-consequence changes in the
+# repository, because a weakened threshold propagates silently into every
+# subsequent assessment. See CONTRIBUTING.md "Changing a control threshold".
+/docs/methodology/risk-scoring.md                 @JourneyOfLife
+/docs/methodology/tiering-rubric.md               @JourneyOfLife
+/docs/methodology/due-diligence.md                @JourneyOfLife
+/docs/agreements/security-requirements-schedule.md @JourneyOfLife
+
+# The gates themselves. A change to CI or to the scan can disable every other
+# control in this repository, so it is called out separately for attribution.
+/.github/workflows/           @JourneyOfLife
+/scripts/                     @JourneyOfLife
+/.github/CODEOWNERS           @JourneyOfLife
+
+# The traceability matrix and the record of decisions. These are what an assessor
+# reads first, and a change to either alters the claimed compliance position.
+/docs/TRACEABILITY.md         @JourneyOfLife
+/docs/ASSUMPTIONS.md          @JourneyOfLife

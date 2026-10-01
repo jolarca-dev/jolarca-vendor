@@ -1,0 +1,150 @@
+name: Methodology defect
+description: >-
+  Report a defect in the vendor management method published in this repository —
+  a formula that does not compute, a control citation that is wrong, a procedure
+  step that cannot be performed, or an internal contradiction between documents.
+title: "[method] "
+labels: ["methodology", "triage"]
+body:
+  # This form is deliberately narrow. It collects defects in PUBLIC method only.
+  #
+  # It does not collect supplier names, risk scores, assessment content, contract
+  # terms or incident detail, because this repository is public and those are
+  # confidential. A form that invited them would be a disclosure channel, and the
+  # fields below are chosen so that a completed form is safe to publish.
+  #
+  # If your report concerns a specific supplier, stop and use the confidential
+  # route in config.yml.
+
+  - type: markdown
+    attributes:
+      value: |
+        **Before you file: this issue will be PUBLIC.**
+
+        Use this form only for defects in the published method. Do **not** include:
+
+        - a supplier or vendor name, in any field, including free text
+        - a risk score, tier, band or assessment finding for any supplier
+        - contract, DPA, SCC or responsibilities-matrix content
+        - personal data of any individual, including supplier personnel
+        - credentials, tokens or keys
+        - a control gap or open finding — see
+          [`docs/gap-intake.md`](../../docs/gap-intake.md) for the correct route
+
+        Content already pushed to a public repository cannot be withdrawn. Reverting
+        the commit does not remove it from history, forks, notifications or
+        subscribers' inboxes. If you have included any of the above by mistake,
+        follow [`SECURITY.md`](../../SECURITY.md) immediately rather than editing
+        the issue.
+
+  - type: dropdown
+    id: defect_type
+    attributes:
+      label: Defect type
+      description: What kind of defect is this?
+      options:
+        - Arithmetic or formula error — the stated calculation does not compute
+        - Internal contradiction — two documents state incompatible rules
+        - Wrong or missing control citation
+        - Unexecutable step — the procedure cannot be performed as written
+        - Broken cross-reference or link
+        - Ambiguity — the rule admits two materially different readings
+        - Stale content — superseded standard, version or deadline
+        - Other (describe below)
+    validations:
+      required: true
+
+  - type: textarea
+    id: location
+    attributes:
+      label: Location
+      description: >-
+        Repository-relative path, and the section, table row or clause. Be precise
+        — "the CE table in docs/methodology/risk-scoring.md section 3" not "the
+        scoring doc".
+      placeholder: docs/methodology/risk-scoring.md — section 4, the RRS formula
+    validations:
+      required: true
+
+  - type: textarea
+    id: current
+    attributes:
+      label: What the document currently says
+      description: >-
+        Quote it. Do not paraphrase — the exact wording is what determines whether
+        this is a defect, and normative language ("must", "should", "may") is
+        deliberate in this repository.
+      render: text
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Why it is wrong
+      description: >-
+        For an arithmetic error, show the calculation. For a contradiction, name
+        both documents and both statements. For a wrong control citation, give the
+        correct clause and its source. For an unexecutable step, say what prevents
+        it being performed.
+      placeholder: >-
+        The formula states RRS = IRS x (1 - (CE x 0.60)) but the worked example in
+        section 5 computes 3.30 x 0.58 = 1.914, which...
+    validations:
+      required: true
+
+  - type: textarea
+    id: control
+    attributes:
+      label: Control affected
+      description: >-
+        Which control does the defective text implement? For example SOC 2 CC9.2,
+        ISO A.5.21, PCI DSS 12.8.4, GDPR Art. 28(3)(g). Write "none" and explain
+        if the defect has no control impact — a documentation-only defect is still
+        worth fixing, but should not be triaged as a control failure.
+      placeholder: ISO A.5.21 — sub-processor identification
+    validations:
+      required: true
+
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Consequence if unfixed
+      description: >-
+        Judge by what happens when someone follows the document as written, not by
+        how obvious the error is.
+      options:
+        - "Critical — following it produces an unlawful or non-compliant outcome"
+        - "High — following it produces a wrong risk decision, e.g. an incorrect tier or band"
+        - "Medium — following it produces inconsistent or incomplete records"
+        - "Low — clarity or consistency only; no effect on the outcome"
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed
+    attributes:
+      label: Proposed correction
+      description: >-
+        Optional, and welcome. If the change touches a control threshold — scoring
+        weights, the residual-risk cap, CE domain definitions, tier floors, or the
+        approval-blocking clause list — say so, because those are change-controlled
+        per CONTRIBUTING.md and require the effect on existing tiers to be
+        described rather than the history restated.
+      render: markdown
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: confirmation
+    attributes:
+      label: Confirmation
+      options:
+        - label: >-
+            This report contains no supplier name, risk score, assessment content,
+            contract term, personal data or credential, and is safe to publish.
+          required: true
+        - label: >-
+            I checked that this is not already reported, and that the defect exists
+            on the current `main` branch rather than in an older revision.
+          required: true
