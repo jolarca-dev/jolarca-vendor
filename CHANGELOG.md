@@ -1,5 +1,13 @@
 # Changelog
 
+## [Unreleased]
+
+### Added
+
+- `docs/methodology/ai-llm-suppliers.md` — LLM-specific risk methodology extending risk-scoring and due-diligence for AI/LLM vendors (DS/BC/AB scoring, CE domains, 20 LLM-specific due-diligence questions, mapping to hermes-agents model-policy controls M1–M4)
+- `docs/adr/VEN-0001-llm-vendor-selection.md` — Proposed ADR recording the LLM vendor selection approach for C13, the ordering constraint (C13 before framework selection), and the three prerequisites (DPIA, DPA, TIA)
+
+
 All notable changes to the vendor management methodology in this repository.
 
 Format follows Keep a Changelog. This repository holds governance documents

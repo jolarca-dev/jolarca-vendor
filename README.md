@@ -65,6 +65,7 @@ as an uncontrolled process under SOC 2 CC9.2 and ISO A.5.22.
 | Control | Subject | Where |
 |---|---|---|
 | SOC 2 CC9.2 | Vendor risk assessed before engagement; alternatives considered; periodic reassessment | `docs/procedures/onboarding.md`, `docs/procedures/reassessment.md` |
+| SOC 2 CC9.2 (LLM) | LLM vendor risk assessed with AI-specific criteria (zero-retention, prompt isolation, inference residency) | `docs/methodology/ai-llm-suppliers.md` |
 | ISO A.5.19 | Supplier relationships: policy, roles, process | `docs/scope-and-boundaries.md`, `docs/procedures/onboarding.md` |
 | ISO A.5.20 | Security addressed within supplier agreements | `docs/agreements/security-requirements-schedule.md` |
 | ISO A.5.21 | ICT supply chain and sub-processors | `docs/procedures/subprocessor-change.md` |
@@ -80,6 +81,7 @@ Full matrix with per-requirement mapping: [`docs/TRACEABILITY.md`](docs/TRACEABI
 | Path | Content |
 |---|---|
 | `docs/methodology/` | Risk scoring, tiering rubric, due-diligence standard |
+| `docs/methodology/ai-llm-suppliers.md` | LLM-specific risk methodology (extends general framework for AI/LLM vendors) |
 | `docs/procedures/` | Onboarding, reassessment, sub-processor change, cloud, exit, PCI TSP |
 | `docs/agreements/` | Security requirements schedule, responsibilities matrix, DPA checklist |
 | `docs/evidence/` | Evidence naming, hashing and retention conventions |
