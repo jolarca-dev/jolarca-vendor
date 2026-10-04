@@ -1,0 +1,19 @@
+version: 2
+
+# Added 2026-10-04 with D-44. The repo's Actions refs are SHA-pinned
+# (jolarca-vendor#2) and there was no update mechanism, so an exact pin with no
+# monitoring ages quietly while still reading as compliant. Dependabot re-pins
+# to the resolved commit with a version comment, keeping AGENTS.md §5 satisfied.
+#
+# Only github-actions is declared, deliberately: this repo tracks 40 files and
+# has no package manifest at all -- no package.json, requirements.txt,
+# pyproject.toml, go.mod or Dockerfile -- so a pip or npm entry would be a dead
+# record that dependabot silently ignores. The parity rule in
+# jolarca-hermes-agents/tests/test_dependabot_coverage.py exists because dead
+# entries survive forever looking harmless.
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
